@@ -11,6 +11,10 @@ public class Stack<Item> {
 		return top == null;
 	}
 	
+	public int size() {
+		return length;
+	}
+	
 	public void push(Item item) {
 		
 		Node<Item> newNode = new Node<Item>();

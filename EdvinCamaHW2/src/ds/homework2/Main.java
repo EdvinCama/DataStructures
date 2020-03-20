@@ -1,5 +1,6 @@
 package ds.homework2;
 
+
 import java.util.Scanner;
 
 
@@ -19,24 +20,60 @@ public class Main {
 		
 		input = expresion.nextLine();
 		
-		for(int i = 0; i < input.length(); i++) {
-			Boolean type = Character.isDigit(input.charAt(i));
+		for(char c: input.toCharArray()) {
 			
-			if(type) {
-				Value.push(i);
-			}else {
-				Operands.push();
+			if(c == '+' || c == '-' || c == '*' || c == '/' || c == '%') {
+				
+				Operands.push(c);
+			}
+			
+			else if(c >= '0' && c <= '9') {
+				
+				Value.push(Character.getNumericValue(c));
+			}
+			
+			else if(c == ')' && Value.size() > 1) {
+				
+				Character I = Operands.pop();
+				int result = 0;
+				int first = Value.pop();
+				int second = Value.pop();
+				
+				switch(I) {
+					
+				case '+':
+					result = first + second;
+					break;
+					
+				case '-':
+					result = first - second;
+					break;
+					
+				case '*':
+					result = first * second;
+					break;
+				
+				case '/':
+					result = first / second;
+					break;
+					
+				case '%':
+					result = first % second;
+					break;
+					
+				default:
+					break;
+				}
+				
+				Value.push(result);
+				
 			}
 			
 			
-			
-			
-			
-			//char c = input.charAt(i);
-			System.out.println(i);
 		}
+		System.out.println("Result: " + Value.pop());
 		
-		System.out.println("Entered: " + input);
 	}
-
+	
 }
+
