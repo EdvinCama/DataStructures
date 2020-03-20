@@ -1,0 +1,2 @@
+module EdvinCamaHW2 {
+}
